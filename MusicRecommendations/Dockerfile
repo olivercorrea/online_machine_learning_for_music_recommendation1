@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-EXPOSE 4000
+EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "apilibros.dll"]
+ENTRYPOINT ["dotnet", "MusicRecommendations.dll"]

@@ -1,11 +1,11 @@
 # Fase de construcción
-FROM node:16 AS build
+FROM node:20 AS build
 
 # Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar el archivo package.json y package-lock.json
-COPY package*.json package-lock*.json ./
+# Copiar los archivos de dependencias
+COPY package*.json ./
 
 # Instalar dependencias
 RUN npm install
@@ -17,13 +17,19 @@ COPY . .
 RUN npm run build
 
 # Fase de producción
-FROM nginx:alpine
+FROM node:20 AS production
 
-# Copiar la aplicación construida desde la fase anterior
-COPY --from=build /app/build /usr/share/nginx/html
+# Establecer el directorio de trabajo
+WORKDIR /app
 
-# Exponer el puerto 80
-EXPOSE 80
+# Copiar los archivos construidos desde la fase de construcción
+COPY --from=build /app/build ./build
 
-# Iniciar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Instalar un servidor HTTP simple para servir la aplicación
+RUN npm install -g serve
+
+# Exponer el puerto 3000
+EXPOSE 3000
+
+# Comando para ejecutar el servidor en modo producción
+CMD ["serve", "-s", "build", "-l", "3000"]

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public class KafkaService
 {
-    private const string KafkaBroker = "localhost:9092";
+    private const string KafkaBroker = "broker:9092";
     private const string RecommendationsTopic = "music_recommendations";
     private const string UserPreferencesTopic = "user_preferences";
 
