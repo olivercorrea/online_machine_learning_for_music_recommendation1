@@ -14,7 +14,7 @@ s_client_ID = os.getenv('SPOTIPY_CLIENT_ID')
 s_client_secret = os.getenv('SPOTIPY_CLIENT_SECRET')
 
 # Configuración de Kafka
-KAFKA_BROKER = 'localhost:9092'
+KAFKA_BROKER = 'broker:9092'
 KAFKA_TOPIC = 'popular_music3'
 
 # Inicializar el productor de Kafka

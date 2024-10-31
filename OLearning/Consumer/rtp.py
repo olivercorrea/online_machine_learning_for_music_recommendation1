@@ -7,7 +7,7 @@ import threading
 import time
 
 # Configuración de Kafka
-KAFKA_BROKER = 'localhost:9092'
+KAFKA_BROKER = 'broker:9092'
 KAFKA_TOPIC = 'popular_music3'
 KAFKA_USER_PREFERENCES_TOPIC = 'user_preferences'
 KAFKA_RECOMMENDATIONS_TOPIC = 'music_recommendations'
