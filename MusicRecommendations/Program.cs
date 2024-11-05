@@ -10,13 +10,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<KafkaService>();
 
-// Configurar CORS para permitir solicitudes desde React
+// Configurar CORS para permitir solicitudes desde cualquier origen
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
-        builder => builder.WithOrigins("http://localhost:3000")
-                          .AllowAnyMethod()
-                          .AllowAnyHeader());
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin() // Permitir cualquier origen
+                          .AllowAnyMethod() // Permitir cualquier método (GET, POST, etc.)
+                          .AllowAnyHeader()); // Permitir cualquier encabezado
 });
 
 var app = builder.Build();
@@ -29,7 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowReactApp");
+app.UseCors("AllowAllOrigins"); // Aplicar la política de CORS
 app.UseAuthorization();
 app.MapControllers();
 
