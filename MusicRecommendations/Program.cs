@@ -28,8 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseCors("AllowAllOrigins"); // Aplicar la política de CORS
+app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

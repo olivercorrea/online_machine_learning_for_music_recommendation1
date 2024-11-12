@@ -5,6 +5,7 @@ from scipy.spatial.distance import cosine
 from collections import deque
 import threading
 import time
+import river
 
 # Configuración de Kafka
 KAFKA_BROKER = 'broker:9092'

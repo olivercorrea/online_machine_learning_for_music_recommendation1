@@ -3,3 +3,5 @@ python-dotenv
 confluent-kafka
 scipy
 scikit-learn
+river
+bytewax

@@ -2,6 +2,13 @@
 
 echo "🚀 Iniciando despliegue..."
 
+# Verificar si docker-compose está disponible
+if command -v docker-compose &>/dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+else
+    DOCKER_COMPOSE="docker compose"
+fi
+
 # Función para eliminar contenedor si existe
 remove_container_if_exists() {
     container_name=$1
@@ -10,9 +17,20 @@ remove_container_if_exists() {
     fi
 }
 
+# Función para crear red si no existe
+create_network_if_not_exists() {
+    network_name=$1
+    if ! docker network ls | grep -q ${network_name}; then
+        docker network create ${network_name}
+    fi
+}
+
+# Crear red kafka_confluent si no existe
+create_network_if_not_exists "kafka_confluent"
+
 # Subir Kafka
 cd kafka
-docker-compose up -d
+$DOCKER_COMPOSE up -d
 cd ..
 
 # Desplegar Producer
