@@ -55,9 +55,12 @@ remove_container_if_exists "csharp-container"
 docker run -d --network=kafka_confluent -it --name csharp-container -p 8080:8080 csharp
 cd ..
 
-# Desplegar Frontend en React
+# Obtener la IP pública de la instancia EC2
+PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+
+# Desplegar Frontend en React con la URL base del API del backend
 cd music-recommendations-frontend
-docker build -t react .
+docker build --build-arg REACT_APP_API_BASE_URL="http://$PUBLIC_IP:8080/api" -t react .
 remove_container_if_exists "react-container"
 docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 react
 

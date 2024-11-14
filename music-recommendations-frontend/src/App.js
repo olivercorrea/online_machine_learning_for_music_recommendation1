@@ -4,7 +4,8 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import RecommendationsList from "./RecommendationsList";
-const API_BASE_URL = "http://172.31.84.249:8080/api";
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || "http://localhost:8080/api";
 
 function App() {
   const [preferences, setPreferences] = useState({
