@@ -47,6 +47,7 @@ docker build -t consumer .
 remove_container_if_exists "consumer-container"
 docker run -d --network=kafka_confluent -it --name consumer-container consumer
 cd ..
+cd ..
 
 # Desplegar C# Service
 cd MusicRecommendations
