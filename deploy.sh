@@ -26,12 +26,13 @@ create_network_if_not_exists() {
 }
 
 # Crear red kafka_confluent si no existe
-create_network_if_not_exists "kafka_confluent"
+#create_network_if_not_exists "kafka_confluent"
 
 # Subir Kafka
 cd kafka
 $DOCKER_COMPOSE up -d
 cd ..
+echo "🚀 Kafka desplegado..."
 
 # Desplegar Producer
 cd OLearning/Producer
@@ -39,6 +40,7 @@ docker build -t producer .
 remove_container_if_exists "producer-container"
 docker run -d --network=kafka_confluent -it --name producer-container producer
 sleep 30
+echo "🚀 Productor desplegado..."
 cd ..
 
 # Desplegar Consumer
@@ -46,23 +48,26 @@ cd Consumer
 docker build -t consumer .
 remove_container_if_exists "consumer-container"
 docker run -d --network=kafka_confluent -it --name consumer-container consumer
-cd ..
-cd ..
+echo "🚀 Consumer desplegado..."
+cd ../..
 
 # Desplegar C# Service
 cd MusicRecommendations
 docker build -t csharp .
 remove_container_if_exists "csharp-container"
 docker run -d --network=kafka_confluent -it --name csharp-container -p 8080:8080 csharp
+echo "🚀 C# Service desplegado..."
 cd ..
 
 # Obtener IP pública de la instancia EC2
-EC2_PUBLIC_IP=$(curl -s http://checkip.amazonaws.com/)
+#EC2_PUBLIC_IP=$(curl -s http://checkip.amazonaws.com/)
+PUBLIC_IP=$(curl -s ifconfig.me)
+echo "IP pública: $PUBLIC_IP"
 
 # Desplegar Frontend en React
 cd music-recommendations-frontend
 docker build -t react .
 remove_container_if_exists "react-container"
-docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 -e REACT_APP_API_BASE_URL=http://$EC2_PUBLIC_IP:8080 react
-
+docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 -e REACT_APP_API_BASE_URL=http://$PUBLIC_IP:8080/api react
+echo "🚀 C# Service desplegado..."
 echo "🚀 Despliegue Terminado"
