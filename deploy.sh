@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀"
 echo "🚀 Iniciando despliegue..."
 
 # Verificar si docker-compose está disponible
@@ -26,7 +27,7 @@ create_network_if_not_exists() {
 }
 
 # Crear red kafka_confluent si no existe
-#create_network_if_not_exists "kafka_confluent"
+create_network_if_not_exists "kafka_confluent"
 
 # Subir Kafka
 cd kafka
@@ -70,4 +71,6 @@ docker build -t react .
 remove_container_if_exists "react-container"
 docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 -e REACT_APP_API_BASE_URL=http://$PUBLIC_IP:8080/api react
 echo "🚀 C# Service desplegado..."
+
+echo "IP pública: http://$PUBLIC_IP:3000/"
 echo "🚀 Despliegue Terminado"

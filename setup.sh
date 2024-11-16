@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀"
+echo "🚀 Iniciando el Set Up"
+
 sudo apt update
 sudo apt install nala -y
 sudo nala install docker.io docker-compose -y
@@ -9,6 +12,7 @@ sudo docker pull confluentinc/cp-zookeeper:7.4.0
 sudo docker pull confluentinc/cp-server:7.4.0
 sudo docker pull confluentinc/cp-schema-registry:7.4.0
 sudo docker pull confluentinc/cp-enterprise-control-center:7.4.0
+sudo docker pull mcr.microsoft.com/dotnet/sdk:8.0
 sudo docker pull python:3.9
 sudo docker pull node:20
 sudo docker pull portainer/portainer-ce
@@ -22,4 +26,4 @@ docker -v
 docker ps
 EOF
 
-echo "🚀 Ambiente terminado ..."
+echo "🚀 Set UP terminado ..."
