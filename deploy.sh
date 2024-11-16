@@ -70,7 +70,7 @@ cd music-recommendations-frontend
 docker build -t react .
 remove_container_if_exists "react-container"
 docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 -e REACT_APP_API_BASE_URL=http://$PUBLIC_IP:8080/api react
-echo "🚀 C# Service desplegado..."
+echo "🚀 React desplegado..."
 
 echo "IP pública: http://$PUBLIC_IP:3000/"
 echo "🚀 Despliegue Terminado"
