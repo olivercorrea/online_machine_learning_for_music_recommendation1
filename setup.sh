@@ -11,6 +11,7 @@ sudo docker pull confluentinc/cp-schema-registry:7.4.0
 sudo docker pull confluentinc/cp-enterprise-control-center:7.4.0
 sudo docker pull python:3.9
 sudo docker pull node:20
+sudo docker pull portainer/portainer-ce
 
 sudo usermod -aG docker $(whoami)
 
