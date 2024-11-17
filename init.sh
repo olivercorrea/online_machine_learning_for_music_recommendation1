@@ -5,14 +5,15 @@ echo "🚀 Iniciando despliegue..."
 # Clonar el repositorio si no existe
 if [ ! -d "online_machine_learning_for_music_recommendation1" ]; then
     git clone https://github.com/olivercorrea/online_machine_learning_for_music_recommendation1.git
+    cd online_machine_learning_for_music_recommendation1
 else
     echo "📂 El repositorio ya existe, omitiendo clonación."
+    cd online_machine_learning_for_music_recommendation1
+    git pull origin v4
 fi
 
-cd online_machine_learning_for_music_recommendation1
-
 # Cambiar a la rama especificada
-git switch v3
+git switch v4
 
 # set up enviroment
 chmod +x setup.sh
@@ -25,7 +26,7 @@ chmod +x swap.sh
 # Portainer
 chmod +x portainer.sh
 ./portainer.sh
-sleep 30
+sleep 15
 
 # Hacer que el script de despliegue sea ejecutable
 chmod +x deploy.sh
@@ -36,4 +37,4 @@ newgrp docker <<EOF
 ./deploy.sh
 EOF
 
-echo "🚀 Tu proyecto esta desplegado"
+echo "🎉🎉🎉🎉 Tu proyecto esta desplegado 🎉🎉🎉🎉"
