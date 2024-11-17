@@ -4,8 +4,14 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import RecommendationsList from "./RecommendationsList";
-const API_BASE_URL = "http://csharp-container:8080/api";
-// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080/api";
+
+// Determina si la aplicación se está ejecutando en un entorno Docker o en un navegador externo
+const isDockerEnv =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "react-container";
+const API_BASE_URL = isDockerEnv
+  ? `http://csharp-container:8080/api`
+  : `http://${window.location.hostname}:8080/api`;
 
 function App() {
   const [preferences, setPreferences] = useState({
