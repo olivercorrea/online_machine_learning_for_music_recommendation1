@@ -13,10 +13,6 @@ RUN npm install
 # Copiar el resto del código fuente
 COPY . .
 
-# Establecer la variable de entorno para la URL base del API
-ARG REACT_APP_API_BASE_URL
-ENV REACT_APP_API_BASE_URL ${REACT_APP_API_BASE_URL}
-
 # Construir la aplicación
 RUN npm run build
 
