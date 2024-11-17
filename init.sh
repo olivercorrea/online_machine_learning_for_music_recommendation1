@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Capturar el tiempo de inicio
+start_time=$(date +%s)
+
 echo "🚀 Iniciando despliegue..."
 
 # Clonar el repositorio si no existe
@@ -36,5 +39,14 @@ newgrp docker <<EOF
 # Ejecutar el script de despliegue
 ./deploy.sh
 EOF
+
+# Capturar el tiempo de finalización
+end_time=$(date +%s)
+
+# Calcular el tiempo total en segundos
+total_time=$(( end_time - start_time ))
+
+# Imprimir el tiempo total
+echo "⏰ Tiempo total de ejecución: ${total_time} segundos."
 
 echo "🎉🎉🎉🎉 Tu proyecto esta desplegado 🎉🎉🎉🎉"
