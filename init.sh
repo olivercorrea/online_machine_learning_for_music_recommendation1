@@ -1,24 +1,32 @@
 #!/bin/bash
 
+# Definición de colores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # Sin color
+
 # Capturar el tiempo de inicio
 start_time=$(date +%s)
 
-echo "🚀 Iniciando despliegue..."
+echo -e "${CYAN}🚀 Iniciando despliegue...${NC}"
 
 # Clonar el repositorio si no existe
 if [ ! -d "online_machine_learning_for_music_recommendation1" ]; then
     git clone https://github.com/olivercorrea/online_machine_learning_for_music_recommendation1.git
     cd online_machine_learning_for_music_recommendation1
 else
-    echo "📂 El repositorio ya existe, omitiendo clonación."
+    echo -e "${YELLOW}📂 El repositorio ya existe, omitiendo clonación.${NC}"
     cd online_machine_learning_for_music_recommendation1
-    git pull origin v4
+    git pull origin v5
 fi
 
 # Cambiar a la rama especificada
-git switch v4
+git switch v5
 
-# set up enviroment
+# Set up environment
 chmod +x setup.sh
 ./setup.sh
 
@@ -47,6 +55,6 @@ end_time=$(date +%s)
 total_time=$(( end_time - start_time ))
 
 # Imprimir el tiempo total
-echo "⏰ Tiempo total de ejecución: ${total_time} segundos."
+echo -e "${GREEN}⏰ Tiempo total de ejecución: ${total_time} segundos.${NC}"
 
-echo "🎉🎉🎉🎉 Tu proyecto esta desplegado 🎉🎉🎉🎉"
+echo -e "${GREEN}🎉🎉🎉🎉 Tu proyecto está desplegado 🎉🎉🎉🎉${NC}"
