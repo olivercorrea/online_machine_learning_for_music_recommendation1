@@ -6,7 +6,7 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # Sin color
 
-echo -e "${CYAN☄️🪁------------------------------------------------------------🪁☄️NC}"
+echo -e "${CYAN}☄️🪁------------------------------------------------------------🪁☄️${NC}"
 echo -e "${GREEN}🚀 Iniciando configuración de SWAP memory...${NC}"
 
 # Crear un archivo de swap de 1 GB
