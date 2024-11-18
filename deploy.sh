@@ -6,9 +6,13 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # Sin color
 
+# Definir la variable dockerId y version
+dockerId="rimaro"
+version="v1"
+
 echo -e "${CYAN}☄️🪁------------------------------------------------------------🪁☄️${NC}"
 echo -e "${GREEN}🚀 Iniciando despliegue...${NC}"
-🦸
+
 # Verificar si docker-compose está disponible
 if command -v docker-compose &>/dev/null; then
     DOCKER_COMPOSE="docker-compose"
@@ -52,36 +56,32 @@ echo -e "${GREEN}🚀 Kafka desplegado...${NC}"
 # Desplegar Producer
 cd OLearning/Producer
 echo -e "${YELLOW}📦 Desplegando Productor...${NC}"
-docker build -t producer .
 remove_container_if_exists "producer-container"
-docker run -d --network=kafka_confluent -it --name producer-container producer
+docker run -d --network=kafka_confluent -it --name producer-container ${dockerId}/tproducer:${version}
 echo -e "${GREEN}🚀 Productor desplegado...${NC}"
 cd ..
 
 # Desplegar Consumer
 cd Consumer
 echo -e "${YELLOW}📦 Desplegando Consumer...${NC}"
-docker build -t consumer .
 remove_container_if_exists "consumer-container"
-docker run -d --network=kafka_confluent -it --name consumer-container consumer
+docker run -d --network=kafka_confluent -it --name consumer-container ${dockerId}tconsumer:${version}
 echo -e "${GREEN}🚀 Consumer desplegado...${NC}"
 cd ../..
 
 # Desplegar C# Service
 cd MusicRecommendations
 echo -e "${YELLOW}📦 Desplegando C# Service...${NC}"
-docker build -t csharp .
 remove_container_if_exists "csharp-container"
-docker run -d --network=kafka_confluent -it --name csharp-container -p 8080:8080 csharp
+docker run -d --network=kafka_confluent -it --name csharp-container -p 8080:8080 ${dockerId}/tcsharp:${version}
 echo -e "${GREEN}🚀 C# Service desplegado...${NC}"
 cd ..
 
 # Desplegar Frontend en React
 cd music-recommendations-frontend
 echo -e "${YELLOW}📦 Desplegando Frontend en React...${NC}"
-docker build -t react .
 remove_container_if_exists "react-container"
-docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 react
+docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 ${dockerId}/treact:${version}
 echo -e "${YELLOW}🌍 IP pública: http://$PUBLIC_IP:3000/${NC}"
 echo -e "${GREEN}🚀 React desplegado...${NC}"
 

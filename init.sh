@@ -20,11 +20,11 @@ if [ ! -d "online_machine_learning_for_music_recommendation1" ]; then
 else
     echo -e "${YELLOW}📂 El repositorio ya existe, omitiendo clonación.${NC}"
     cd online_machine_learning_for_music_recommendation1
-    git pull origin v5
+    git pull origin v7
 fi
 
 # Cambiar a la rama especificada
-git switch v5
+git switch v7
 
 # Set up environment
 chmod +x setup.sh
