@@ -7,10 +7,12 @@ const RecommendationsList = ({ recommendations }) => {
     return date.toLocaleString();
   };
 
-  // Verifica si hay recomendaciones
-
   if (!recommendations || !recommendations.recommendations) {
-    return <p>No hay recomendaciones disponibles.</p>;
+    return (
+      <div className="recommendations-container">
+        <p>No hay recomendaciones disponibles.</p>
+      </div>
+    );
   }
 
   return (
@@ -22,14 +24,14 @@ const RecommendationsList = ({ recommendations }) => {
         {recommendations.recommendations.map((rec, index) => (
           <ListGroup.Item
             key={index}
-            className="d-flex justify-content-between align-items-start"
+            className="d-flex justify-content-between align-items-center"
           >
-            <div className="ms-2 me-auto">
+            <div className="song-info">
               <div className="fw-bold">{rec.track}</div>
-              {rec.artist}
+              <div className="artist-name">{rec.artist}</div>
             </div>
-            <Badge bg="primary" pill>
-              {(rec.similarity * 100).toFixed(2)}%
+            <Badge pill>
+              {(rec.similarity * 100).toFixed(0)}%
             </Badge>
           </ListGroup.Item>
         ))}
