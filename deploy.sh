@@ -8,7 +8,7 @@ NC='\033[0m' # Sin color
 
 echo -e "${CYAN}☄️🪁------------------------------------------------------------🪁☄️${NC}"
 echo -e "${GREEN}🚀 Iniciando despliegue...${NC}"
-🦸
+
 # Verificar si docker-compose está disponible
 if command -v docker-compose &>/dev/null; then
     DOCKER_COMPOSE="docker-compose"
