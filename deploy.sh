@@ -54,31 +54,24 @@ echo -e "${YELLOW}🌍 IP pública: http://$PUBLIC_IP:9021/${NC}"
 echo -e "${GREEN}🚀 Kafka desplegado...${NC}"
 
 # Desplegar Producer
-cd OLearning/Producer
 echo -e "${YELLOW}📦 Desplegando Productor...${NC}"
 remove_container_if_exists "producer-container"
 docker run -d --network=kafka_confluent -it --name producer-container ${dockerId}/tproducer:${version}
 echo -e "${GREEN}🚀 Productor desplegado...${NC}"
-cd ..
 
 # Desplegar Consumer
-cd Consumer
 echo -e "${YELLOW}📦 Desplegando Consumer...${NC}"
 remove_container_if_exists "consumer-container"
-docker run -d --network=kafka_confluent -it --name consumer-container ${dockerId}tconsumer:${version}
+docker run -d --network=kafka_confluent -it --name consumer-container ${dockerId}/tconsumer:${version}
 echo -e "${GREEN}🚀 Consumer desplegado...${NC}"
-cd ../..
 
 # Desplegar C# Service
-cd MusicRecommendations
 echo -e "${YELLOW}📦 Desplegando C# Service...${NC}"
 remove_container_if_exists "csharp-container"
 docker run -d --network=kafka_confluent -it --name csharp-container -p 8080:8080 ${dockerId}/tcsharp:${version}
 echo -e "${GREEN}🚀 C# Service desplegado...${NC}"
-cd ..
 
 # Desplegar Frontend en React
-cd music-recommendations-frontend
 echo -e "${YELLOW}📦 Desplegando Frontend en React...${NC}"
 remove_container_if_exists "react-container"
 docker run -d --network=kafka_confluent -it --name react-container -p 3000:3000 ${dockerId}/treact:${version}
