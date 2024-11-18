@@ -37,7 +37,6 @@ chmod +x swap.sh
 # Portainer
 chmod +x portainer.sh
 ./portainer.sh
-sleep 15
 
 # Hacer que el script de despliegue sea ejecutable
 chmod +x deploy.sh
