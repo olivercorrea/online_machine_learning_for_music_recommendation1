@@ -7,7 +7,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' # Sin color
 
 # Definir la variable dockerId y version
-dockerId="rimaro"
+dockerId="fabianhilares852"
 version="v1"
 
 echo -e "${CYAN}☄️🪁------------------------------------------------------------🪁☄️${NC}"

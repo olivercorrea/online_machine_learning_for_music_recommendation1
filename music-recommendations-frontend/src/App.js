@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Form, Alert } from "react-bootstrap";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import RecommendationsList from "./RecommendationsList";
 
-const API_BASE_URL = "http://localhost:5189/api";
+
+// Determina si la aplicación se está ejecutando en un entorno Docker o en un navegador externo
+
+
+const isDockerEnv =
+
+  window.location.hostname === "localhost" ||
+
+  window.location.hostname === "react-container";
+
+const API_BASE_URL = isDockerEnv
+
+  ? `http://csharp-container:8080/api`
+
+  : `http://${window.location.hostname}:8080/api`;
 
 function App() {
   const [preferences, setPreferences] = useState({
@@ -30,6 +45,7 @@ function App() {
   const getRecommendations = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/get_recommendations`);
+      console.log("Respuesta de la API:", response.data);
       if (JSON.stringify(response.data) !== JSON.stringify(recommendations)) {
         setRecommendations(response.data);
       }
