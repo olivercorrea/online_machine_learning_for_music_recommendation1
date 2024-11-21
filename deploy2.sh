@@ -76,6 +76,8 @@ remove_container_if_exists "producer-container"
 docker run -d --network=kafka_confluent -it --name producer-container ${dockerId}/tproducer:${version}
 echo -e "${GREEN}🚀 Productor desplegado...${NC}"
 
+sleep 30
+
 # Desplegar Consumer
 echo -e "${YELLOW}📦 Desplegando Consumer...${NC}"
 remove_container_if_exists "consumer-container"
