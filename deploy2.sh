@@ -65,7 +65,7 @@ echo -e "${YELLOW}🌍 IP pública: $PUBLIC_IP${NC}"
 mkdir kafka
 cd kafka
 
-curl -O curl -L -o docker-compose.yml https://raw.githubusercontent.com/olivercorrea/online_machine_learning_for_music_recommendation1/v7/kafka/docker-compose.yml
+curl -L -o docker-compose.yml https://raw.githubusercontent.com/olivercorrea/online_machine_learning_for_music_recommendation1/v7/kafka/docker-compose.yml
 
 echo -e "${YELLOW}📦 Subiendo Kafka...${NC}"
 $DOCKER_COMPOSE up -d
