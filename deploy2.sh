@@ -62,6 +62,8 @@ PUBLIC_IP=$(curl -s ifconfig.me)
 echo -e "${YELLOW}🌍 IP pública: $PUBLIC_IP${NC}"
 
 # Subir Kafka
+mkdir kafka
+cd kafka
 curl -O https://raw.githubusercontent.com/olivercorrea/online_machine_learning_for_music_recommendation1/v7/kafka/docker-compose.yml
 
 echo -e "${YELLOW}📦 Subiendo Kafka...${NC}"
@@ -75,8 +77,6 @@ echo -e "${YELLOW}📦 Desplegando Productor...${NC}"
 remove_container_if_exists "producer-container"
 docker run -d --network=kafka_confluent -it --name producer-container ${dockerId}/tproducer:${version}
 echo -e "${GREEN}🚀 Productor desplegado...${NC}"
-
-sleep 60
 
 # Desplegar Consumer
 echo -e "${YELLOW}📦 Desplegando Consumer...${NC}"
