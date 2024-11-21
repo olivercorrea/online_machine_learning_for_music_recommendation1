@@ -13,6 +13,22 @@ version="v5"
 echo -e "${CYAN}☄️🪁------------------------------------------------------------🪁☄️${NC}"
 echo -e "${GREEN}🚀 Iniciando despliegue...${NC}"
 
+# Descargar imágenes
+echo -e "${YELLOW}⬇️ Descargando imágenes de Docker...${NC}"
+sudo docker pull confluentinc/cp-zookeeper:7.4.0
+sudo docker pull confluentinc/cp-server:7.4.0
+sudo docker pull confluentinc/cp-schema-registry:7.4.0
+sudo docker pull confluentinc/cp-enterprise-control-center:7.4.0
+sudo docker pull mcr.microsoft.com/dotnet/sdk:8.0
+sudo docker pull python:3.9
+sudo docker pull node:20
+sudo docker pull portainer/portainer-ce
+
+sudo docker pull ${dockerId}/tproducer:${version}
+sudo docker pull ${dockerId}/tconsumer:${version}
+sudo docker pull ${dockerId}/tcsharp:${version}
+sudo docker pull ${dockerId}/treact:${version}
+
 # Verificar si docker-compose está disponible
 if command -v docker-compose &>/dev/null; then
     DOCKER_COMPOSE="docker-compose"
@@ -46,7 +62,11 @@ PUBLIC_IP=$(curl -s ifconfig.me)
 echo -e "${YELLOW}🌍 IP pública: $PUBLIC_IP${NC}"
 
 # Subir Kafka
+mkdir kafka
 cd kafka
+
+curl -O curl -L -o docker-compose.yml https://raw.githubusercontent.com/olivercorrea/online_machine_learning_for_music_recommendation1/v7/kafka/docker-compose.yml
+
 echo -e "${YELLOW}📦 Subiendo Kafka...${NC}"
 $DOCKER_COMPOSE up -d
 cd ..

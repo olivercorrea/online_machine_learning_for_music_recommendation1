@@ -8,7 +8,7 @@ NC='\033[0m' # Sin color
 
 # Definir la variable dockerId y version
 dockerId="rimaro"
-version="v2"
+version="v5"
 
 echo -e "${CYAN}☄️🪁------------------------------------------------------------🪁☄️${NC}"
 echo -e "${GREEN}🚀 Building...${NC}"
